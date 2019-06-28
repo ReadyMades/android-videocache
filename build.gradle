@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+
+buildscript {
+  repositories {
+    jcenter()
+    mavenCentral()
+    google()
+  }
+  dependencies {
+    classpath 'com.android.tools.build:gradle:3.4.1'
+  }
+}
+
+android {
+  compileSdkVersion 28
+  buildToolsVersion '28.0.3'
+
+  defaultConfig {
+    minSdkVersion 14
+    targetSdkVersion 28
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+    }
+  }
+}
+
+repositories {
+  jcenter()
+  mavenCentral()
+  google()
+}
+
+dependencies {
+  implementation 'org.slf4j:slf4j-android:1.7.21'
+}
+
+task sourceJar(type: Jar) {
+  from android.sourceSets.main.java.srcDirs
+  classifier "sources"
+}
