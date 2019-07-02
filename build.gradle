@@ -1,6 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
+ext {
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.3"
+
+    targetSdkVersion = 28
+
+    versionCode = 1
+    versionName = "1.0.0"
+}
+
 buildscript {
   repositories {
     jcenter()
@@ -13,12 +23,12 @@ buildscript {
 }
 
 android {
-  compileSdkVersion 28
-  buildToolsVersion '28.0.3'
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
 
   defaultConfig {
     minSdkVersion 14
-    targetSdkVersion 28
+    targetSdkVersion rootProject.ext.targetSdkVersion
   }
 
   buildTypes {
@@ -42,3 +52,5 @@ task sourceJar(type: Jar) {
   from android.sourceSets.main.java.srcDirs
   classifier "sources"
 }
+
+version rootProject.ext.versionName
